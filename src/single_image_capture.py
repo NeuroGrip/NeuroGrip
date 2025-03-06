@@ -42,12 +42,13 @@ def main():
         rospy.init_node('image_capture_node', anonymous=True)
 
     # Example usage: Capture images one at a time from the same topic
-    topic_name = '/camera/color/image_raw/compressed'  # Replace with your topic name
+    topic_name = "/camera/color/image_raw"  # Replace with your topic name
 
     # First instance: Capture one image
     capture = ImageCapture(topic_name)
     while not capture.is_done() and not rospy.is_shutdown():
         rospy.sleep(0.1)  # Wait briefly for the callback to process
+    # rospy.spin()
 
 if __name__ == '__main__':
     try:

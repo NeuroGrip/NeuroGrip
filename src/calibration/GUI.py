@@ -47,7 +47,7 @@ def on_click(event):
     return x, y
 
 # Function to return (x,y) coordinates for pick up
-def pick_up(event, center_point_pickup):
+def pick_up(center_point_pickup):
     # Center points for objects in the image
     center_point_1 = [439, 199]
     center_point_2 = [430, 522]
@@ -59,16 +59,16 @@ def pick_up(event, center_point_pickup):
     pos_3 = [0.58410627, 0.24772805, 0.04621511]
     
     # Get top left (x,y) coordinates for box
-    x1, y1 = on_click(event)
+    x1, y1 = [302, 42]
     
     # Get top right (x,y) coordinates for box
-    x2, y2 = on_click(event)
+    x2, y2 = [898, 46]
     
     # Get bottom left (x,y) coordinates for box
-    x3, y3 = on_click(event)
+    x3, y3 = [308, 661]
     
     # Get bottom right (x,y) coordinates for box
-    x4, y4 = on_click(event)
+    x4, y4 = [921, 650]
 
     # If object outside box return none
     if center_point_pickup[0] < x1 or center_point_pickup[1] < y1 or center_point_pickup[0] > x4 or center_point_pickup[1] > y4:
@@ -96,14 +96,14 @@ def pick_up(event, center_point_pickup):
     
 
 # Bind mouse click event to the canvas
-canvas.bind("<Button-1>", on_click)
+# canvas.bind("<Button-1>", on_click)
 
 # Center point for the object to be picked up
 center_point_pickup = [439, 199]
 print("yes")
 # Center points for the object
-pickup_pos_x, pickup_pos_y = pick_up(event, center_point_pickup)
-print(pickup_pos_x, pickup_pose_y)
+pickup_pos_x, pickup_pos_y = pick_up(center_point_pickup)
+print(pickup_pos_x, pickup_pos_y)
 
-# Run the application
-root.mainloop()
+# # Run the application
+# root.mainloop()
