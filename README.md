@@ -41,6 +41,14 @@ This system enables natural language-driven object manipulation by integrating:
 
 <img src="./Assets/segmentation_flow.png" width="500"/>
 
+#### How to launch
+
+```bash
+ssh student@172.26.165.203
+pip3 install dotenv openai
+roslaunch manipulation realsense.launch
+```
+
 #### How to use
 
 ```bash
