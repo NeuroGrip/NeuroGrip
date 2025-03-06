@@ -47,7 +47,7 @@ def on_click(event):
     return x, y
 
 # Function to return (x,y) coordinates for pick up
-def pick_up(event, center_point_1, center_point_2, center_point_3, pos_1, pos_2, pos_3):
+def pick_up(event, center_point_1, center_point_2, center_point_3, pos_1, pos_2, pos_3, center_point_pickup):
     # Get top left (x,y) coordinates for box
     x1, y1 = on_click(event)
     
@@ -60,8 +60,29 @@ def pick_up(event, center_point_1, center_point_2, center_point_3, pos_1, pos_2,
     # Get bottom right (x,y) coordinates for box
     x4, y4 = on_click(event)
 
-    #
-    
+    # If object outside box return none
+    if center_point_pickup[0] < x1 or center_point_pickup[1] < y1 or center_point_pickup[0] > x4 or center_point_pickup[1] > y4:
+        print("object outside box")
+        return None
+
+    # Calculate distance between center points
+    center_point_x_dist = center_point_1[0] - center_point_2[0]
+    center_point_y_dist = center_point_1[1] - center_point_2[1]
+
+    # Calculate distance between object and center point
+    pos_x_dist = pos_1[0]-pos_2[0]
+    pos_y_dist = pos_1[1]-pos_3[1]
+
+    # Calculate distance between pickup center point and center point
+    pickup_center_point_x_dist = center_point_pickup[0] - center_point_1[0]
+    pickup_center_point_y_dist = center_point_pickup[1] - center_point_1[1]
+
+    # Calculate pickup object pose
+    pickup_pos_x = pos_1[0] + (pickup_center_point_x_dist*pos_x_dist/center_point_x_dist)
+    pickup_pos_y = pos_1[1] + (pickup_center_point_y_dist*pos_y_dist/center_point_y_dist)
+
+    # Return pickup object pose
+    return pickup_pos_x, pickup_pos_y
     
 
 # Bind mouse click event to the canvas
