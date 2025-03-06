@@ -43,6 +43,26 @@ def on_click(event):
     # Update label with coordinates
     coord_label.config(text=f"Clicked at: ({x}, {y})")
 
+    # Return x and y coordinates
+    return x, y
+
+# Function to return (x,y) coordinates for pick up
+def pick_up(event):
+    # Get top left (x,y) coordinates for box
+    x1, y1 = on_click(event)
+    
+    # Get top right (x,y) coordinates for box
+    x2, y2 = on_click(event)
+    
+    # Get bottom left (x,y) coordinates for box
+    x3, y3 = on_click(event)
+    
+    # Get bottom right (x,y) coordinates for box
+    x4, y4 = on_click(event)
+
+    
+    
+
 # Bind mouse click event to the canvas
 canvas.bind("<Button-1>", on_click)
 
