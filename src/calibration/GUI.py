@@ -47,7 +47,7 @@ def on_click(event):
     return x, y
 
 # Function to return (x,y) coordinates for pick up
-def pick_up(event):
+def pick_up(event, center_point_1, center_point_2, center_point_3, pos_1, pos_2, pos_3):
     # Get top left (x,y) coordinates for box
     x1, y1 = on_click(event)
     
@@ -60,6 +60,7 @@ def pick_up(event):
     # Get bottom right (x,y) coordinates for box
     x4, y4 = on_click(event)
 
+    #
     
     
 
