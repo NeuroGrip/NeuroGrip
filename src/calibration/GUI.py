@@ -100,7 +100,7 @@ canvas.bind("<Button-1>", on_click)
 
 # Center point for the object to be picked up
 center_point_pickup = [439, 199]
-
+print("yes")
 # Center points for the object
 pickup_pos_x, pickup_pos_y = pick_up(event, center_point_pickup)
 print(pickup_pos_x, pickup_pose_y)
