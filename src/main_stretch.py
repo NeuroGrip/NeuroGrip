@@ -9,9 +9,9 @@ from sensor_msgs.msg import Image
 
 from single_image_capture import ImageCapture
 
-from segment import Segment
+from segment_stretch import Segment
 
-from franka_control import FrankaMoveIt
+from franka_control_stretch import FrankaMoveIt
 
 from calibration import pick_up
 
@@ -25,7 +25,32 @@ def main():
     sentence = input("> ")
     parsed_result = parser.parse_sentence(sentence)
     print(parsed_result)
+    
+    # Go to dropoff position to see if it's taken
+    fa.move_to_dropoff_position(parsed_result["destination"])
+    
+    # Capture image
+    if not rospy.core.is_initialized():
+        rospy.init_node("neurogrip", anonymous=True)
+    topic_name = "/camera/color/image_raw"
+    capture = ImageCapture(topic_name, image_path)
 
+    while not capture.is_done() and not rospy.is_shutdown():
+        rospy.sleep(0.1)
+
+    # Location is taken
+    try:
+        results, center_point = seg.segment(image_path, parsed_result["object"], viz=True)
+        print("Location is taken. Putting item in drop zone.")
+        fa.pickup_from_shelf(parsed_result["destination"])
+        fa.move_to_dropoff_position(parsed_result["destination"])
+        fa.reset_joints()
+        fa.dropoff_at_dropzone()
+    # Location is empty
+    except Exception as e:
+        print("Location is empty. Continuing with pickup.")
+        fa.reset_joints()
+    
     # Photo taking position
     fa.move_to_reset_position()
 

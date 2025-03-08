@@ -3,6 +3,7 @@ from matplotlib import pyplot as plt
 import numpy as np
 import requests
 from io import BytesIO
+# import pytesseract
 
 
 class Segment:
@@ -34,6 +35,13 @@ class Segment:
         output = BytesIO(response.content)
         
         output_img = Image.open(output)
+
+        # extracted_text = pytesseract.image_to_string(output_img).strip()
+
+        # # Compare extracted text with prompt
+        # if extracted_text.lower() != prompt.lower():
+        #     print(f"Segmented text '{extracted_text}' does not match prompt '{prompt}'.")
+        #     return None
     
         # convert output to numpy array
         output_np = np.array(Image.open(output))
