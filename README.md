@@ -56,3 +56,9 @@ cd src
 python3 main.py 
 # input your prompt
 ```
+
+## Implementation videos
+
+https://youtu.be/2TF8aYAhmj0
+
+https://youtu.be/WbBWrO_oRvI
